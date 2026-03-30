@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixelmon 1.21.1 — Modpack Download</title>
+    <meta name="description" content="Download the Pixelmon 1.21.1 client mods to play on our server">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/shared.css">
+    <style>
+        /* Page-specific styles */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+            min-height: calc(100vh - var(--navbar-height));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Pokéball icon */
+        .pokeball {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 24px;
+            position: relative;
+            animation: pokeball-bounce 3s ease-in-out infinite;
+        }
+
+        @keyframes pokeball-bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-8px) rotate(5deg); }
+            75% { transform: translateY(-4px) rotate(-3deg); }
+        }
+
+        .pokeball svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px var(--accent-red-glow));
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, var(--accent-white) 0%, var(--accent-blue-light) 50%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .header .version {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            background: rgba(230, 57, 70, 0.12);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(230, 57, 70, 0.2);
+            margin-bottom: 16px;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* Download card */
+        .download-card {
+            width: 100%;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .download-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .download-card .file-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .file-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--accent-red), #c1121f);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 20px var(--accent-red-glow);
+        }
+
+        .file-details h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .file-meta {
+            display: flex;
+            gap: 16px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .file-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 24px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, var(--accent-red), #c1121f);
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 24px var(--accent-red-glow);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(230, 57, 70, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .download-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Stats bar */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+            margin-bottom: 24px;
+        }
+
+        .stat {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 16px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-blue-light);
+            margin-bottom: 2px;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+        }
+
+        /* Instructions card */
+        .instructions {
+            width: 100%;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px 36px;
+            margin-bottom: 24px;
+        }
+
+        .instructions h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .steps {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .steps li {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        .step-num {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            background: rgba(69, 123, 157, 0.15);
+            border: 1px solid rgba(69, 123, 157, 0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-blue-light);
+        }
+
+        .steps code {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+
+        /* Server info */
+        .server-info {
+            width: 100%;
+            background: rgba(6, 214, 160, 0.06);
+            border: 1px solid rgba(6, 214, 160, 0.15);
+            border-radius: 14px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .server-status {
+            width: 10px;
+            height: 10px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(6, 214, 160, 0.6);
+            animation: pulse 2s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .server-info-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .server-info-text strong {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .server-ip {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .server-ip:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 24px 16px 40px; }
+            .header h1 { font-size: 1.8rem; }
+            .download-card { padding: 24px; }
+            .instructions { padding: 24px; }
+            .stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .stat { padding: 14px 10px; }
+            .stat-value { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body class="has-navbar">
+    <div class="bg-grid"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="../" class="nav-brand">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="80" height="80" rx="12" fill="#457b9d"/>
+                <rect x="25" y="25" width="20" height="20" rx="3" fill="#a8dadc"/>
+                <rect x="55" y="25" width="20" height="20" rx="3" fill="#a8dadc"/>
+                <rect x="25" y="55" width="20" height="20" rx="3" fill="#a8dadc"/>
+                <rect x="55" y="55" width="20" height="20" rx="3" fill="#e63946"/>
+            </svg>
+            <span>Server Hub</span>
+        </a>
+        <ul class="nav-links">
+            <li>
+                <a href="../" class="nav-link">
+                    <span class="nav-icon">🏠</span>
+                    Home
+                </a>
+            </li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-btn">
+                    <span class="nav-icon">🎮</span>
+                    Servers
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <ul class="nav-dropdown-menu">
+                    <li>
+                        <a href="./" class="nav-dropdown-item active">
+                            <span class="nav-dropdown-icon">🔴</span>
+                            <span class="nav-dropdown-text">
+                                <span class="nav-dropdown-name">Pixelmon</span>
+                                <span class="nav-dropdown-version">1.21.1 · NeoForge</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <button class="nav-mobile-btn" aria-label="Toggle menu" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </nav>
+
+    <div class="container">
+        <!-- Pokéball -->
+        <div class="pokeball">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="48" fill="none" stroke="#333" stroke-width="3"/>
+                <path d="M2,50 A48,48 0 0,1 98,50 Z" fill="#e63946"/>
+                <path d="M2,50 A48,48 0 0,0 98,50 Z" fill="#f1faee"/>
+                <rect x="2" y="47" width="96" height="6" fill="#333" rx="1"/>
+                <circle cx="50" cy="50" r="14" fill="#333"/>
+                <circle cx="50" cy="50" r="10" fill="#f1faee" stroke="#333" stroke-width="3"/>
+                <circle cx="50" cy="50" r="5" fill="#333"/>
+            </svg>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <h1>Pixelmon Modpack</h1>
+            <div class="version">Minecraft 1.21.1 · NeoForge</div>
+            <p>Download the client mods to play on our server.<br>Extract into your mods folder and join!</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">42</div>
+                <div class="stat-label">Mods</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">423</div>
+                <div class="stat-label">MB</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">1.21.1</div>
+                <div class="stat-label">Version</div>
+            </div>
+        </div>
+
+        <!-- Download Options -->
+        <h3 style="margin-bottom: 16px; font-size: 1.1rem; color: var(--accent-gold); width: 100%;">Option 1: Windows Auto-Installer (Recommended)</h3>
+        <div class="download-card" style="margin-bottom: 32px;">
+            <div class="file-info">
+                <div class="file-icon" style="background: linear-gradient(135deg, var(--accent-blue), #1d3557); box-shadow: 0 4px 20px rgba(69, 123, 157, 0.4);">⚙️</div>
+                <div class="file-details">
+                    <h2>install-pixelmon.bat</h2>
+                    <div class="file-meta">
+                        <span>🚀 1-Click Install</span>
+                        <span>💾 3 KB</span>
+                        <span>🔄 Auto-Backups</span>
+                    </div>
+                </div>
+            </div>
+            <a href="install-pixelmon.bat" class="download-btn" style="background: linear-gradient(135deg, var(--accent-blue), #1d3557); box-shadow: 0 4px 24px rgba(69, 123, 157, 0.4);">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+                Download Auto-Installer
+            </a>
+            <p style="margin-top: 16px; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">Download both this .bat and the mods-client.zip into the exact same folder, then double-click the .bat to automatically install.</p>
+        </div>
+
+        <h3 style="margin-bottom: 16px; font-size: 1.1rem; color: var(--text-muted); width: 100%;">Option 2: Manual Download</h3>
+        <div class="download-card">
+            <div class="file-info">
+                <div class="file-icon">📦</div>
+                <div class="file-details">
+                    <h2>mods-client.zip</h2>
+                    <div class="file-meta">
+                        <span>📁 42 mods</span>
+                        <span>💾 423 MB</span>
+                        <span>🔧 NeoForge</span>
+                    </div>
+                </div>
+            </div>
+            <a href="mods-client.zip" class="download-btn" id="downloadBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                Download Modpack ZIP
+            </a>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <h3>⚡ Setup Instructions</h3>
+            <ol class="steps">
+                <li>
+                    <span class="step-num">1</span>
+                    <span>Install <strong>NeoForge 21.1.200+</strong> for Minecraft 1.21.1 from <a href="https://neoforged.net" target="_blank" style="color: var(--accent-blue-light)">neoforged.net</a></span>
+                </li>
+                <li>
+                    <span class="step-num">2</span>
+                    <span>Make sure you have <strong>Java 21</strong> installed</span>
+                </li>
+                <li>
+                    <span class="step-num">3</span>
+                    <span>Extract <code>mods-client.zip</code> into your <code>.minecraft/mods/</code> folder (delete old mods first)</span>
+                </li>
+                <li>
+                    <span class="step-num">4</span>
+                    <span>Allocate at least <strong>6-8 GB RAM</strong> in your launcher settings</span>
+                </li>
+                <li>
+                    <span class="step-num">5</span>
+                    <span>Launch Minecraft with the NeoForge profile and join the server!</span>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Server address -->
+        <div class="server-info">
+            <div class="server-status"></div>
+            <div class="server-info-text">
+                <strong>Server is online</strong> — connect to
+                <span class="server-ip" onclick="navigator.clipboard.writeText(this.textContent).then(()=>{this.style.color='#06d6a0';setTimeout(()=>this.style.color='',1000)})" title="Click to copy">pcanabarro.dev:25565</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            Pixelmon 9.3.14 · NeoForge 21.1.222 · Updated March 2026
+        </div>
+    </div>
+
+    <script src="../js/shared.js"></script>
+</body>
+</html>
