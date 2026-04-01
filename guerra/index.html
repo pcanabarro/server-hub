@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixelmon 1.21.1 — Modpack Download</title>
-    <meta name="description" content="Download the Pixelmon 1.21.1 client mods to play on our server">
+    <title>Guerra 1.21.1 — Modpack Download</title>
+    <meta name="description" content="Download the Guerra 1.21.1 client mods to play on our server">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/shared.css">
@@ -23,25 +23,25 @@
             justify-content: center;
         }
 
-        /* Pokéball icon */
-        .pokeball {
+        /* Sword icon */
+        .icon-wrapper {
             width: 80px;
             height: 80px;
             margin-bottom: 24px;
             position: relative;
-            animation: pokeball-bounce 3s ease-in-out infinite;
+            animation: icon-bounce 3s ease-in-out infinite;
         }
 
-        @keyframes pokeball-bounce {
+        @keyframes icon-bounce {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             25% { transform: translateY(-8px) rotate(5deg); }
             75% { transform: translateY(-4px) rotate(-3deg); }
         }
 
-        .pokeball svg {
+        .icon-wrapper svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 20px var(--accent-red-glow));
+            filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.5));
         }
 
         /* Header */
@@ -54,7 +54,7 @@
             font-size: 2.4rem;
             font-weight: 900;
             letter-spacing: -0.03em;
-            background: linear-gradient(135deg, var(--accent-white) 0%, var(--accent-blue-light) 50%, var(--accent-gold) 100%);
+            background: linear-gradient(135deg, var(--accent-white) 0%, #ff6b35 50%, var(--accent-gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -67,11 +67,11 @@
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--accent-red);
-            background: rgba(230, 57, 70, 0.12);
+            color: #ff6b35;
+            background: rgba(255, 107, 53, 0.12);
             padding: 4px 12px;
             border-radius: 20px;
-            border: 1px solid rgba(230, 57, 70, 0.2);
+            border: 1px solid rgba(255, 107, 53, 0.2);
             margin-bottom: 16px;
         }
 
@@ -110,14 +110,14 @@
         .file-icon {
             width: 52px;
             height: 52px;
-            background: linear-gradient(135deg, var(--accent-red), #c1121f);
+            background: linear-gradient(135deg, #ff6b35, #d63c00);
             border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
             flex-shrink: 0;
-            box-shadow: 0 4px 20px var(--accent-red-glow);
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
         }
 
         .file-details h2 {
@@ -150,18 +150,18 @@
             font-size: 1.05rem;
             font-weight: 700;
             color: white;
-            background: linear-gradient(135deg, var(--accent-red), #c1121f);
+            background: linear-gradient(135deg, #ff6b35, #d63c00);
             border: none;
             border-radius: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            box-shadow: 0 4px 24px var(--accent-red-glow);
+            box-shadow: 0 4px 24px rgba(255, 107, 53, 0.4);
         }
 
         .download-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(230, 57, 70, 0.5);
+            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.5);
             filter: brightness(1.1);
         }
 
@@ -195,7 +195,7 @@
         .stat-value {
             font-size: 1.5rem;
             font-weight: 800;
-            color: var(--accent-blue-light);
+            color: #ff6b35;
             margin-bottom: 2px;
         }
 
@@ -248,15 +248,15 @@
             width: 28px;
             height: 28px;
             min-width: 28px;
-            background: rgba(69, 123, 157, 0.15);
-            border: 1px solid rgba(69, 123, 157, 0.3);
+            background: rgba(255, 107, 53, 0.15);
+            border: 1px solid rgba(255, 107, 53, 0.3);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.8rem;
             font-weight: 700;
-            color: var(--accent-blue-light);
+            color: #ff6b35;
         }
 
         .steps code {
@@ -371,7 +371,7 @@
                 </button>
                 <ul class="nav-dropdown-menu">
                     <li>
-                        <a href="./" class="nav-dropdown-item active">
+                        <a href="../pixelmon-web/" class="nav-dropdown-item">
                             <span class="nav-dropdown-icon">🔴</span>
                             <span class="nav-dropdown-text">
                                 <span class="nav-dropdown-name">Pixelmon</span>
@@ -380,7 +380,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../guerra/" class="nav-dropdown-item">
+                        <a href="./" class="nav-dropdown-item active">
                             <span class="nav-dropdown-icon">⚔️</span>
                             <span class="nav-dropdown-text">
                                 <span class="nav-dropdown-name">Guerra</span>
@@ -399,34 +399,37 @@
     </nav>
 
     <div class="container">
-        <!-- Pokéball -->
-        <div class="pokeball">
+        <!-- Sword Icon -->
+        <div class="icon-wrapper">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="48" fill="none" stroke="#333" stroke-width="3"/>
-                <path d="M2,50 A48,48 0 0,1 98,50 Z" fill="#e63946"/>
-                <path d="M2,50 A48,48 0 0,0 98,50 Z" fill="#f1faee"/>
-                <rect x="2" y="47" width="96" height="6" fill="#333" rx="1"/>
-                <circle cx="50" cy="50" r="14" fill="#333"/>
-                <circle cx="50" cy="50" r="10" fill="#f1faee" stroke="#333" stroke-width="3"/>
-                <circle cx="50" cy="50" r="5" fill="#333"/>
+                <!-- Sword blade -->
+                <polygon points="50,5 55,45 50,50 45,45" fill="#c0c0c0"/>
+                <polygon points="50,5 55,45 50,50" fill="#a0a0a0"/>
+                <!-- Sword guard -->
+                <rect x="35" y="48" width="30" height="8" rx="2" fill="#8b4513"/>
+                <!-- Sword handle -->
+                <rect x="46" y="56" width="8" height="25" rx="2" fill="#654321"/>
+                <!-- Sword pommel -->
+                <circle cx="50" cy="85" r="6" fill="#ff6b35"/>
+                <circle cx="50" cy="85" r="3" fill="#ffd700"/>
             </svg>
         </div>
 
         <!-- Header -->
         <div class="header">
-            <h1>Pixelmon Modpack</h1>
+            <h1>Guerra Modpack</h1>
             <div class="version">Minecraft 1.21.1 · NeoForge</div>
-            <p>Download the client mods to play on our server.<br>Extract into your mods folder and join!</p>
+            <p>Download the client mods to play on our PvP server.<br>Extract into your mods folder and join the battle!</p>
         </div>
 
         <!-- Stats -->
         <div class="stats">
             <div class="stat">
-                <div class="stat-value">42</div>
+                <div class="stat-value">50</div>
                 <div class="stat-label">Mods</div>
             </div>
             <div class="stat">
-                <div class="stat-value">423</div>
+                <div class="stat-value">170</div>
                 <div class="stat-label">MB</div>
             </div>
             <div class="stat">
@@ -441,7 +444,7 @@
             <div class="file-info">
                 <div class="file-icon" style="background: linear-gradient(135deg, var(--accent-blue), #1d3557); box-shadow: 0 4px 20px rgba(69, 123, 157, 0.4);">⚙️</div>
                 <div class="file-details">
-                    <h2>install-pixelmon.bat</h2>
+                    <h2>install-guerra.bat</h2>
                     <div class="file-meta">
                         <span>🚀 1-Click Install</span>
                         <span>💾 3 KB</span>
@@ -449,7 +452,7 @@
                     </div>
                 </div>
             </div>
-            <a href="install-pixelmon.bat" class="download-btn" style="background: linear-gradient(135deg, var(--accent-blue), #1d3557); box-shadow: 0 4px 24px rgba(69, 123, 157, 0.4);">
+            <a href="install-guerra.bat" class="download-btn" style="background: linear-gradient(135deg, var(--accent-blue), #1d3557); box-shadow: 0 4px 24px rgba(69, 123, 157, 0.4);">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                 </svg>
@@ -465,8 +468,8 @@
                 <div class="file-details">
                     <h2>mods-client.zip</h2>
                     <div class="file-meta">
-                        <span>📁 42 mods</span>
-                        <span>💾 423 MB</span>
+                        <span>📁 50 mods</span>
+                        <span>💾 170 MB</span>
                         <span>🔧 NeoForge</span>
                     </div>
                 </div>
@@ -511,12 +514,12 @@
             <div class="server-status"></div>
             <div class="server-info-text">
                 <strong>Server is online</strong> — connect to
-                <span class="server-ip" onclick="navigator.clipboard.writeText(this.textContent).then(()=>{this.style.color='#06d6a0';setTimeout(()=>this.style.color='',1000)})" title="Click to copy">pcanabarro.dev:25565</span>
+                <span class="server-ip" onclick="navigator.clipboard.writeText(this.textContent).then(()=>{this.style.color='#06d6a0';setTimeout(()=>this.style.color='',1000)})" title="Click to copy">pcanabarro.dev:25566</span>
             </div>
         </div>
 
         <div class="footer">
-            Pixelmon 9.3.14 · NeoForge 21.1.222 · Updated March 2026
+            Guerra · NeoForge 21.1.222 · Updated April 2026
         </div>
     </div>
 

@@ -221,6 +221,16 @@
             box-shadow: 0 4px 20px rgba(230, 57, 70, 0.3);
         }
 
+        /* Guerra specific */
+        .server-card.guerra {
+            --card-accent: #ff6b35;
+        }
+
+        .server-card.guerra .server-icon {
+            background: linear-gradient(135deg, #ff6b35, #d63c00);
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+        }
+
         /* Empty state for future servers */
         .server-card.coming-soon {
             border-style: dashed;
@@ -301,6 +311,15 @@
                             </span>
                         </a>
                     </li>
+                    <li>
+                        <a href="/guerra/" class="nav-dropdown-item">
+                            <span class="nav-dropdown-icon">⚔️</span>
+                            <span class="nav-dropdown-text">
+                                <span class="nav-dropdown-name">Guerra</span>
+                                <span class="nav-dropdown-version">1.21.1 · NeoForge</span>
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -356,19 +375,36 @@
                     </div>
                 </a>
 
-                <!-- Placeholder for future servers -->
-                <div class="server-card coming-soon">
+                <!-- Guerra -->
+                <a href="/guerra/" class="server-card guerra">
                     <div class="server-card-header">
-                        <div class="server-icon">➕</div>
+                        <div class="server-icon">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <polygon points="50,10 55,45 50,50 45,45" fill="#fff"/>
+                                <rect x="35" y="48" width="30" height="8" rx="2" fill="rgba(255,255,255,0.7)"/>
+                                <rect x="46" y="56" width="8" height="22" rx="2" fill="rgba(255,255,255,0.5)"/>
+                                <circle cx="50" cy="82" r="5" fill="#ffd700"/>
+                            </svg>
+                        </div>
                         <div class="server-card-info">
-                            <h2>More Coming Soon</h2>
-                            <div class="version">New servers on the way!</div>
+                            <h2>Guerra</h2>
+                            <div class="version">Minecraft 1.21.1 · NeoForge</div>
                         </div>
                     </div>
                     <p class="server-card-description">
-                        We're working on adding more modpacks and server options. Stay tuned!
+                        PvP modpack with combat enhancements and warfare mods. Join the battlefield!
                     </p>
-                </div>
+                    <div class="server-card-meta">
+                        <span class="meta-item"><span class="icon">📦</span> 50 mods</span>
+                        <span class="meta-item"><span class="icon">💾</span> 170 MB</span>
+                        <span class="meta-item"><span class="icon">🟢</span> Online</span>
+                    </div>
+                    <div class="server-card-cta">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
             </div>
         </section>
 
