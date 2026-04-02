@@ -10,7 +10,7 @@ export default defineConfig({
     {
       name: 'spa-routes',
       closeBundle() {
-        const distDir = path.resolve(__dirname, 'dist');
+        const distDir = path.resolve(__dirname, 'build');
         const indexHtml = path.join(distDir, 'index.html');
 
         if (!fs.existsSync(indexHtml)) return;
@@ -31,6 +31,6 @@ export default defineConfig({
     },
   ],
   build: {
-    outDir: 'dist',
+    outDir: 'build',
   },
 });
