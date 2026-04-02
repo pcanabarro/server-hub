@@ -15,10 +15,11 @@ echo  ╚═══════════════════════�
 echo.
 
 :: ── Configuration ──
-set "SERVER_URL=https://pcanabarro.dev:8080"
 set "ZIP_NAME=mods-client.zip"
 set "MC_DIR=%APPDATA%\.minecraft"
 set "MODS_DIR=%MC_DIR%\mods"
+set "NEOFORGE_VERSION=21.11.42"
+set "SERVER_IP=tbzz.tech"
 
 :: ── Check .minecraft exists ──
 if not exist "%MC_DIR%" (
@@ -110,25 +111,25 @@ echo  ── Next Steps ──
 echo    1. Open your Minecraft launcher
 echo    2. Select the NeoForge 1.21.1 profile
 echo    3. Set RAM to at least 6 GB in JVM arguments
-echo    4. Launch and connect to: pcanabarro.dev:25565
+echo    4. Launch and connect to: %SERVER_IP%
 echo.
 echo  ═══════════════════════════════════════════════════
 echo.
 
 :: ── Check for NeoForge ──
-echo  [CHECK] Checking for NeoForge 21.1.222...
-for /d %%D in ("%MC_DIR%\versions\*neoforge*21.1.222*") do (
-    echo  [OK] NeoForge 21.1.222 is already installed! Skipping installer.
+echo  [CHECK] Checking for NeoForge %NEOFORGE_VERSION%...
+for /d %%D in ("%MC_DIR%\versions\*neoforge*%NEOFORGE_VERSION%*") do (
+    echo  [OK] NeoForge %NEOFORGE_VERSION% is already installed! Skipping installer.
     echo.
     goto Cleanup
 )
 
 :: ── Download & Run NeoForge Installer ──
-echo  [DOWNLOAD] Fetching NeoForge Installer (21.1.222)...
+echo  [DOWNLOAD] Fetching NeoForge Installer (%NEOFORGE_VERSION%)...
 echo             A new window will pop up soon!
 echo.
-set "FORGE_INSTALLER=%TEMP%\neoforge-21.1.222-installer.jar"
-powershell -Command "Invoke-WebRequest -Uri 'https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.222/neoforge-21.1.222-installer.jar' -OutFile '%FORGE_INSTALLER%' -UseBasicParsing" 2>nul
+set "FORGE_INSTALLER=%TEMP%\neoforge-%NEOFORGE_VERSION%-installer.jar"
+powershell -Command "Invoke-WebRequest -Uri 'https://maven.neoforged.net/releases/net/neoforged/neoforge/%NEOFORGE_VERSION%/neoforge-%NEOFORGE_VERSION%-installer.jar' -OutFile '%FORGE_INSTALLER%' -UseBasicParsing" 2>nul
 
 if exist "%FORGE_INSTALLER%" (
     java -version >nul 2>&1
