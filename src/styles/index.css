@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   Server Hub — Shared Styles
+   Server Hub — Global Styles
    ═══════════════════════════════════════════════════════════ */
 
 *, *::before, *::after {
@@ -32,6 +32,11 @@ body {
     color: var(--text-primary);
     min-height: 100vh;
     overflow-x: hidden;
+    padding-top: var(--navbar-height);
+}
+
+a {
+    color: inherit;
 }
 
 /* ── Animated Background ── */
@@ -81,7 +86,7 @@ body {
     z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 32px;
     padding: 0 32px;
 }
 
@@ -249,6 +254,7 @@ body {
     color: var(--text-primary);
     padding: 8px;
     cursor: pointer;
+    margin-left: auto;
 }
 
 .nav-mobile-btn svg {
@@ -256,9 +262,21 @@ body {
     height: 24px;
 }
 
-/* Page content padding for navbar */
-.has-navbar {
-    padding-top: var(--navbar-height);
+/* ── Footer ── */
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.footer a {
+    color: var(--accent-blue-light);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }
 
 /* ── Responsive ── */
