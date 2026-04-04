@@ -18,7 +18,7 @@ echo.
 set "ZIP_NAME=mods-client.zip"
 set "MC_DIR=%APPDATA%\.minecraft"
 set "MODS_DIR=%MC_DIR%\mods"
-set "NEOFORGE_VERSION=21.11.222"
+set "NEOFORGE_VERSION=21.1.222"
 set "SERVER_IP=tbzz.tech"
 
 :: ── Check .minecraft exists ──
