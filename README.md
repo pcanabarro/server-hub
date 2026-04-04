@@ -93,7 +93,7 @@ Edit `src/data/servers.js` and add a new server object:
   name: 'My Server',
   slug: 'my-server',           // URL slug
   version: '1.21.1',
-  neoforgeVersion: '21.11.42',
+  neoforgeVersion: '21.11.222',
   modCount: 30,
   sizeMB: 200,
   accentColor: '#3498db',      // Primary color
@@ -120,7 +120,7 @@ Edit `src/data/servers.js` and add a new server object:
     'Step 1...',
     'Step 2...',
   ],
-  footerText: 'My Server · NeoForge 21.11.42',
+  footerText: 'My Server · NeoForge 21.11.222',
 }
 ```
 
