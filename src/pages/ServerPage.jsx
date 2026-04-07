@@ -97,7 +97,7 @@ export default function ServerPage() {
         buttonText="Download Auto-Installer"
         buttonIcon="bolt"
         accentStyle={installerAccent}
-        note="Download both this .bat and the mods-client.zip into the exact same folder, then double-click the .bat to automatically install."
+        note="Download this .bat and double-click it to automatically download and install the modpack."
       />
 
       {/* Manual Download */}

@@ -16,7 +16,7 @@ export const servers = [
       'Catch, train, and battle Pokémon in Minecraft! Includes Pixelmon Reforged and essential client mods.',
     detailDescription:
       'Download the client mods to play on our server.<br>Extract into your mods folder and join!',
-    serverIp: 'tbzz.tech',
+    serverIp: 'nitron.space',
     downloads: {
       installer: {
         file: 'install-pixelmon.bat',
@@ -32,7 +32,7 @@ export const servers = [
     instructions: [
       'Install <strong>NeoForge 21.1.222</strong> for Minecraft 1.21.1 from <a href="https://neoforged.net" target="_blank" style="color: var(--accent-blue-light)">neoforged.net</a>',
       'Make sure you have <strong>Java 21</strong> installed',
-      'Extract <code>mods-client.zip</code> into your <code>.minecraft/mods/</code> folder (delete old mods first)',
+      'If installing manually, extract <code>mods-client.zip</code> into your <code>.minecraft/mods/</code> folder (delete old mods first)',
       'Allocate at least <strong>6-8 GB RAM</strong> in your launcher settings',
       'Launch Minecraft with the NeoForge profile and join the server!',
     ],
@@ -64,14 +64,14 @@ export const servers = [
       },
       modpack: {
         file: 'mods-client.zip',
-        href: 'https://drive.usercontent.google.com/download?id=1CZmTdV7OrjEHq6z68Dud1DObjhyVZ_iB&confirm=t',
+        href: 'https://drive.usercontent.google.com/download?id=1RvATuEBTsixJagvYCTHrhFLZpKpdVTWp&export=download&authuser=2&confirm=t',
         sizeLabel: '170 MB',
       },
     },
     instructions: [
       'Install <strong>NeoForge 21.1.222</strong> for Minecraft 1.21.1 from <a href="https://neoforged.net" target="_blank" style="color: var(--accent-blue-light)">neoforged.net</a>',
       'Make sure you have <strong>Java 21</strong> installed',
-      'Extract <code>mods-client.zip</code> into your <code>.minecraft/mods/</code> folder (delete old mods first)',
+      'If installing manually, extract <code>mods-client.zip</code> into your <code>.minecraft/mods/</code> folder (delete old mods first)',
       'Allocate at least <strong>6-8 GB RAM</strong> in your launcher settings',
       'Launch Minecraft with the NeoForge profile and join the server!',
     ],

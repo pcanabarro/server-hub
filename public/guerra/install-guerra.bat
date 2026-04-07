@@ -15,7 +15,9 @@ echo  ╚═══════════════════════�
 echo.
 
 :: ── Configuration ──
-set "ZIP_NAME=mods-client.zip"
+set "ZIP_URL=https://drive.usercontent.google.com/download?id=1RvATuEBTsixJagvYCTHrhFLZpKpdVTWp&export=download&authuser=2&confirm=t"
+set "TEMP_ZIP=%TEMP%\guerra-mods-client.zip"
+set "TEMP_EXTRACT=%TEMP%\guerra-mods-extract"
 set "MC_DIR=%APPDATA%\.minecraft"
 set "MODS_DIR=%MC_DIR%\mods"
 set "NEOFORGE_VERSION=21.1.222"
@@ -69,31 +71,65 @@ if exist "%MODS_DIR%\*.jar" (
     echo.
 )
 
-:: ── Use local mods-client.zip ──
-if not exist "%ZIP_NAME%" (
-    echo  [ERROR] %ZIP_NAME% was not found in the current folder.
-    echo          Please place %ZIP_NAME% next to this script and try again.
-    echo.
+:: ── Download mods-client.zip ──
+echo  [DOWNLOAD] Fetching modpack ZIP...
+echo  [INFO] This may take a few minutes depending on your connection.
+echo.
+if exist "%TEMP_ZIP%" del "%TEMP_ZIP%" 2>nul
+where curl >nul 2>&1
+if %errorlevel% equ 0 (
+    curl -L --fail --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 1800 --progress-bar -o "%TEMP_ZIP%" "%ZIP_URL%"
+) else (
+    powershell -Command "try { $ProgressPreference='SilentlyContinue'; Invoke-WebRequest -Uri '%ZIP_URL%' -OutFile '%TEMP_ZIP%' -UseBasicParsing -MaximumRedirection 10 -TimeoutSec 1800 -ErrorAction Stop; exit 0 } catch { exit 1 }"
+)
+if %errorlevel% neq 0 (
+    echo  [ERROR] Failed to download the modpack ZIP (request failed or timed out).
     pause
     exit /b 1
 )
-
-echo  [INFO] Local %ZIP_NAME% found. Preparing for extraction...
+if not exist "%TEMP_ZIP%" (
+    echo  [ERROR] Modpack ZIP was not downloaded.
+    pause
+    exit /b 1
+)
+for %%A in ("%TEMP_ZIP%") do set "ZIP_BYTES=%%~zA"
+powershell -Command "try { Add-Type -AssemblyName 'System.IO.Compression.FileSystem'; $zip = [System.IO.Compression.ZipFile]::OpenRead('%TEMP_ZIP%'); $zip.Dispose(); exit 0 } catch { exit 1 }" 2>nul
+if %errorlevel% neq 0 (
+    echo  [ERROR] Downloaded file is not a valid ZIP archive.
+    echo          The download link may be invalid or temporarily blocked.
+    pause
+    exit /b 1
+)
+echo  [OK] Modpack ZIP downloaded. Size: !ZIP_BYTES! bytes
 echo.
-set "TEMP_ZIP=%TEMP%\guerra-mods-client.zip"
-copy /Y "%ZIP_NAME%" "%TEMP_ZIP%" >nul
 
-:: ── Extract mods ──
-echo  [INSTALL] Extracting mods to: %MODS_DIR%
+:: ── Extract mods to temp and copy jars ──
+if exist "%TEMP_EXTRACT%" rmdir /s /q "%TEMP_EXTRACT%" 2>nul
+mkdir "%TEMP_EXTRACT%" 2>nul
+
+echo  [INSTALL] Extracting modpack to temp folder...
 echo.
 
-powershell -Command "Expand-Archive -Path '%TEMP_ZIP%' -DestinationPath '%MODS_DIR%' -Force"
+powershell -Command "try { Expand-Archive -Path '%TEMP_ZIP%' -DestinationPath '%TEMP_EXTRACT%' -Force -ErrorAction Stop; exit 0 } catch { exit 1 }"
 if %errorlevel% neq 0 (
     echo  [ERROR] Extraction failed.
     pause
     exit /b 1
 )
-echo  [OK] Mods extracted successfully.
+
+set /a COPIED=0
+for /r "%TEMP_EXTRACT%" %%f in (*.jar) do (
+    copy /Y "%%f" "%MODS_DIR%\" >nul 2>&1
+    if not errorlevel 1 set /a COPIED+=1
+)
+
+if !COPIED! equ 0 (
+    echo  [ERROR] No .jar files were found in the downloaded ZIP.
+    echo          ZIP path: %TEMP_ZIP%
+    pause
+    exit /b 1
+)
+echo  [OK] Copied !COPIED! mod files to: %MODS_DIR%
 
 :: ── Count installed mods ──
 set /a MODCOUNT=0
@@ -147,5 +183,6 @@ if exist "%FORGE_INSTALLER%" (
 :Cleanup
 :: ── Cleanup ──
 del "%TEMP_ZIP%" 2>nul
+if exist "%TEMP_EXTRACT%" rmdir /s /q "%TEMP_EXTRACT%" 2>nul
 
 pause
